@@ -1,0 +1,24 @@
+-- Create parties table
+CREATE TABLE parties (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    party_name VARCHAR(100) NOT NULL,
+    vote_count INT DEFAULT 0
+);
+
+-- Create votes table to track individual votes
+CREATE TABLE votes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    voter_id VARCHAR(50) NOT NULL,
+    party_id INT NOT NULL,
+    vote_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_voter (voter_id),
+    FOREIGN KEY (party_id) REFERENCES parties(id)
+);
+
+CREATE TABLE voter (
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    voterID VARCHAR(50) PRIMARY KEY,
+    mobile VARCHAR(15),
+    password VARCHAR(255) NOT NULL
+);
